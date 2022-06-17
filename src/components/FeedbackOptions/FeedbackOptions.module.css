@@ -1,0 +1,22 @@
+.listButtons {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  margin: 50px auto 0;
+  width: 200px;
+}
+
+.button {
+  padding: 2px 10px;
+  font-size: 15px;
+  font-weight: 600;
+  background-color: transparent;
+  border: none;
+  box-shadow: 0px 0px 3px #7e7979;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.button:focus {
+  outline: 1px solid #7e7979;
+}

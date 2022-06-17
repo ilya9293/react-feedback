@@ -1,4 +1,7 @@
 import { Component } from 'react';
+import Section from '../Section';
+import Statistics from '../Statistics';
+import FeedbackOptions from '../FeedbackOptions';
 import s from './App.module.css';
 
 class App extends Component {
@@ -8,7 +11,7 @@ class App extends Component {
     bad: 0,
   };
 
-  handleFeedback = e => {
+  onLeaveFeedback = e => {
     const calledFeedback = e.target.dataset.action;
     this.setState(prevState => {
       return { [calledFeedback]: prevState[calledFeedback] + 1 };
@@ -16,7 +19,8 @@ class App extends Component {
   };
 
   countTotalFeedback = () => {
-    return this.state.good + this.state.neutral + this.state.bad;
+    const { good, neutral, bad } = this.state;
+    return good + neutral + bad;
   };
 
   countPositiveFeedbackPercentage = () => {
@@ -26,64 +30,19 @@ class App extends Component {
   render() {
     return (
       <div className={s.App}>
-        <h1 className={s.title}>Please leave feedback</h1>
+        <Section title="Please leave feedback">
+          <FeedbackOptions onLeaveFeedback={this.onLeaveFeedback} />
+        </Section>
 
-        <ul className={s.listButtons}>
-          <li className={s.listButtons__item}>
-            <button
-              onClick={this.handleFeedback}
-              className={s.button}
-              type="button"
-              data-action="good"
-            >
-              Good
-            </button>
-          </li>
-          <li className={s.listButtons__item}>
-            <button
-              onClick={this.handleFeedback}
-              className={s.button}
-              type="button"
-              data-action="neutral"
-            >
-              Neutral
-            </button>
-          </li>
-          <li className={s.listButtons__item}>
-            {' '}
-            <button
-              onClick={this.handleFeedback}
-              className={s.button}
-              type="button"
-              data-action="bad"
-            >
-              Bad
-            </button>
-          </li>
-        </ul>
-        <h2 className={s.statistics}>Statistics</h2>
-        <ul className={s.list}>
-          <li className={s.list__item}>
-            Good: <span className={s.list__amount}>{this.state.good}</span>
-          </li>
-          <li className={s.list__item}>
-            Neutral:{' '}
-            <span className={s.list__amount}>{this.state.neutral}</span>
-          </li>
-          <li className={s.list__item}>
-            Bad: <span className={s.list__amount}>{this.state.bad}</span>
-          </li>
-          <li className={s.list__item}>
-            Total:{' '}
-            <span className={s.list__amount}>{this.countTotalFeedback()}</span>
-          </li>
-          <li className={s.list__item}>
-            Positive Feedback:{' '}
-            <span className={s.list__amount}>
-              {this.countPositiveFeedbackPercentage()}
-            </span>
-          </li>
-        </ul>
+        <Section title="Statistics">
+          <Statistics
+            good={this.state.good}
+            neutral={this.state.neutral}
+            bad={this.state.bad}
+            total={this.countTotalFeedback()}
+            positivePercentage={this.countPositiveFeedbackPercentage()}
+          />
+        </Section>
       </div>
     );
   }
