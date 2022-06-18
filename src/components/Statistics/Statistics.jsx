@@ -19,7 +19,7 @@ function Statistics({ good, neutral, bad, total, positivePercentage }) {
       <li className={s.list__item}>
         Positive Feedback:{' '}
         <span className={s.list__amount}>
-          {positivePercentage ? positivePercentage : 0}
+          {positivePercentage ? positivePercentage + '%' : 0}
         </span>
       </li>
     </ul>
