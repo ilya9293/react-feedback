@@ -20,3 +20,7 @@
 .button:focus {
   outline: 1px solid #7e7979;
 }
+
+.button::first-letter {
+  text-transform: uppercase;
+}
