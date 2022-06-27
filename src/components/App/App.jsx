@@ -12,10 +12,10 @@ class App extends Component {
     bad: 0,
   };
 
-  onLeaveFeedback = e => {
-    const calledFeedback = e.target.dataset.action;
+  onLeaveFeedback = option => {
+    //  const calledFeedback = e.target.dataset.action;
     this.setState(prevState => {
-      return { [calledFeedback]: prevState[calledFeedback] + 1 };
+      return { [option]: prevState[option] + 1 };
     });
   };
 

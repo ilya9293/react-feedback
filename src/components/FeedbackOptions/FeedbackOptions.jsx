@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 function FeedbackOptions({ options, onLeaveFeedback }) {
   return (
     <ul className={s.listButtons}>
-      {Object.keys(options).map((btn, idx) => {
+      {Object.keys(options).map(btn => {
         return (
-          <li className={s.listButtons__item} key={idx}>
+          <li className={s.listButtons__item} key={btn}>
             <button
-              onClick={onLeaveFeedback}
+              onClick={() => onLeaveFeedback(btn)}
               className={s.button}
               type="button"
-              data-action={btn}
+              //   data-action={btn}
             >
               {btn}
             </button>
